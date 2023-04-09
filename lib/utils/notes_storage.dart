@@ -1,5 +1,3 @@
-// utilities to store and retrieve notes from the local file system .json file
-
 import 'dart:convert';
 import 'dart:io';
 
