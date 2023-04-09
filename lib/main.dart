@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ideagenis/utils/note_colors.dart';
 import 'package:yaru/yaru.dart';
 
 import 'components/note_card.dart';

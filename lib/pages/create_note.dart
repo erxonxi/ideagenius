@@ -1,7 +1,6 @@
 // Create Note Page Widget
 import 'package:flutter/material.dart';
 
-import '../components/note_card.dart';
 import '../utils/note_colors.dart';
 import '../utils/notes_storage.dart';
 
@@ -9,6 +8,7 @@ class CreateNotePage extends StatefulWidget {
   const CreateNotePage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _CreateNotePageState createState() => _CreateNotePageState();
 }
 
