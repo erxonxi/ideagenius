@@ -89,6 +89,11 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  Future<void> _deleteNote(Note note) async {
+    await NotesStorage.deleteNote(note);
+    _loadNotes();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -107,6 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
             title: note.title,
             content: note.content,
             date: note.date,
+            onDelete: () => _deleteNote(note),
           );
         },
       ),

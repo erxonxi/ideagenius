@@ -5,6 +5,7 @@ class NoteCard extends StatelessWidget {
   final Color color;
   final String content;
   final String date;
+  final VoidCallback onDelete;
 
   const NoteCard({
     super.key,
@@ -12,6 +13,7 @@ class NoteCard extends StatelessWidget {
     required this.color,
     required this.content,
     required this.date,
+    required this.onDelete,
   });
 
   @override
@@ -32,12 +34,21 @@ class NoteCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: onDelete,
+                    icon: const Icon(Icons.delete),
+                  ),
+                ],
               ),
               const SizedBox(height: 8.0),
               Text(
