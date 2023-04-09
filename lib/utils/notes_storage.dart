@@ -79,7 +79,14 @@ class NotesStorage {
 
   static Future<File> get _localFile async {
     final path = await _localPath;
-    return File('$path/notes.json');
+
+    final file = File('$path/notes.json');
+    if (!await file.exists()) {
+      await file.create();
+      file.writeAsString("[]");
+    }
+
+    return file;
   }
 
   static Future<String> get _localPath async {
