@@ -23,15 +23,19 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       routes: {
-        "/create-note": (context) => Builder(
-              builder: (context) => YaruTheme(
-                data: AppTheme.of(context),
-                child: const CreateNotePage(),
-              ),
-            ),
+        "/create-note": applyYaru(context, const CreateNotePage()),
       },
     );
   }
+}
+
+WidgetBuilder applyYaru(BuildContext context, Widget page) {
+  return (context) => Builder(
+        builder: (context) => YaruTheme(
+          data: AppTheme.of(context),
+          child: page,
+        ),
+      );
 }
 
 class AppTheme {

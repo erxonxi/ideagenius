@@ -6,6 +6,7 @@ class NoteCard extends StatelessWidget {
   final String content;
   final String date;
   final VoidCallback onDelete;
+  final VoidCallback onTap;
 
   const NoteCard({
     super.key,
@@ -14,59 +15,63 @@ class NoteCard extends StatelessWidget {
     required this.content,
     required this.date,
     required this.onDelete,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.0),
-      ),
-      color: color,
-      elevation: 0,
-      // full width
-      child: SizedBox(
-        width: double.infinity,
-        // background color
-        child: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
+    return InkWell(
+      onTap: onTap,
+      child: Card(
+        margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        color: color,
+        elevation: 0,
+        // full width
+        child: SizedBox(
+          width: double.infinity,
+          // background color
+          child: Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  IconButton(
-                    onPressed: onDelete,
-                    icon: const Icon(Icons.delete),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8.0),
-              Text(
-                content,
-                style: const TextStyle(
-                  fontSize: 14.0,
-                  color: Colors.black54,
+                    IconButton(
+                      onPressed: onDelete,
+                      icon: const Icon(Icons.delete),
+                    ),
+                  ],
                 ),
-              ),
-              const SizedBox(height: 8.0),
-              Text(
-                date,
-                style: const TextStyle(
-                  fontSize: 12.0,
-                  color: Colors.black54,
+                const SizedBox(height: 8.0),
+                Text(
+                  content,
+                  style: const TextStyle(
+                    fontSize: 14.0,
+                    color: Colors.black54,
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 8.0),
+                Text(
+                  date,
+                  style: const TextStyle(
+                    fontSize: 12.0,
+                    color: Colors.black54,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

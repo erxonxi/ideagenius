@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:yaru/yaru.dart';
 
 import '../components/note_card.dart';
+import '../main.dart';
 import '../utils/notes_storage.dart';
+import 'note_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -33,6 +36,18 @@ class _HomePageState extends State<HomePage> {
     _loadNotes();
   }
 
+  void _visitNoteViewPage(Note note) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => YaruTheme(
+          data: AppTheme.of(context),
+          child: NoteViewPage(note: note),
+        ),
+      ),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -52,6 +67,7 @@ class _HomePageState extends State<HomePage> {
             content: note.content,
             date: note.date,
             onDelete: () => _deleteNote(note),
+            onTap: () => _visitNoteViewPage(note),
           );
         },
       ),
