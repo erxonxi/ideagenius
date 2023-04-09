@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideagenis/utils/note_colors.dart';
+import 'package:yaru/yaru.dart';
 
 import 'components/note_card.dart';
 import 'pages/create_note.dart';
@@ -15,13 +16,48 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'IdeaGenius',
-      theme: ThemeData(
-        primarySwatch: Colors.grey,
+      home: Builder(
+        builder: (context) => YaruTheme(
+          data: AppTheme.of(context),
+          child: const MyHomePage(title: "IdeaGenius"),
+        ),
       ),
-      home: const MyHomePage(title: 'Home'),
+      debugShowCheckedModeBanner: false,
       routes: {
-        "/create-note": (context) => const CreateNotePage(),
+        "/create-note": (context) => Builder(
+              builder: (context) => YaruTheme(
+                data: AppTheme.of(context),
+                child: const CreateNotePage(),
+              ),
+            ),
       },
+    );
+  }
+}
+
+class AppTheme {
+  static YaruThemeData of(BuildContext context) {
+    return SharedAppData.getValue(
+      context,
+      'theme',
+      () => const YaruThemeData(),
+    );
+  }
+
+  static void apply(
+    BuildContext context, {
+    YaruVariant? variant,
+    bool? highContrast,
+    ThemeMode? themeMode,
+  }) {
+    SharedAppData.setValue(
+      context,
+      'theme',
+      AppTheme.of(context).copyWith(
+        themeMode: themeMode,
+        variant: variant,
+        highContrast: highContrast,
+      ),
     );
   }
 }
@@ -72,7 +108,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _visitCreateNotePage,
-        tooltip: 'Add new note',
+        tooltip: 'Add',
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0),
+        ),
         child: const Icon(Icons.add),
       ),
     );

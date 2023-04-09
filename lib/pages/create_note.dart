@@ -30,7 +30,6 @@ class _CreateNotePageState extends State<CreateNotePage> {
             TextFormField(
               decoration: const InputDecoration(
                 labelText: "Title",
-                hintText: "Enter the title",
               ),
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -44,9 +43,11 @@ class _CreateNotePageState extends State<CreateNotePage> {
             ),
             const SizedBox(height: 16.0),
             TextFormField(
+              keyboardType: TextInputType.multiline,
+              minLines: 1,
+              maxLines: 50,
               decoration: const InputDecoration(
                 labelText: "Content",
-                hintText: "Enter the content",
               ),
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -59,7 +60,7 @@ class _CreateNotePageState extends State<CreateNotePage> {
               },
             ),
             const SizedBox(height: 16.0),
-            ElevatedButton(
+            FilledButton(
               onPressed: () {
                 if (_formKey.currentState?.validate() ?? false) {
                   _formKey.currentState?.save();
