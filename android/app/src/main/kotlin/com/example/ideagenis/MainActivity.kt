@@ -1,4 +1,4 @@
-package com.example.ideagenis
+package com.example.ideagenius
 
 import io.flutter.embedding.android.FlutterActivity
 
