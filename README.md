@@ -1,16 +1,48 @@
-# ideagenis
+# IdeaGenius
 
-A new Flutter project.
+IdeaGenius es una aplicación de notas intuitiva y elegante para guardar tus ideas y pensamientos. Desarrollada con Flutter, esta aplicación multiplataforma te permite llevar tus ideas contigo en cualquier dispositivo y sistema operativo.
 
-## Getting Started
+![IdeaGenius Screenshot](./screenshots/IdeaGenius_screenshot.png)
 
-This project is a starting point for a Flutter application.
+## Características
 
-A few resources to get you started if this is your first Flutter project:
+- Crear, editar y eliminar notas
+- Elegir colores al azar para tus notas
+- Diseño minimalista y fácil de usar
+- Compatible con múltiples plataformas (iOS, Android, Web)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Instalación
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Para instalar IdeaGenius, sigue estos pasos:
+
+1. Clona el repositorio en tu máquina local:
+
+2. Navega hasta el directorio del proyecto e instala las dependencias:
+
+```bash
+flutter pub get
+```
+
+3. Ejecuta la aplicación en tu dispositivo/emulador:
+
+```bash
+flutter run
+```
+
+
+## Contribuciones
+
+IdeaGenius es un proyecto de código abierto y nos encantaría que te unas a nosotros para mejorarlo. Si te gustaría contribuir, aquí hay algunas ideas:
+
+- Reportar errores y solicitar nuevas funcionalidades a través de [issues](https://github.com/erxonxi/ideagenius/issues)
+- Mejorar la experiencia del usuario (UI/UX)
+- Implementar nuevas funcionalidades y solucionar problemas existentes
+- Mejorar la documentación y agregar traducciones
+
+No dudes en enviar un Pull Request o abrir un Issue para discutir tus ideas.
+
+## Licencia
+
+IdeaGenius está licenciado bajo la licencia [MIT](https://github.com/erxonxi/ideagenius/blob/main/LICENSE).
+
+
