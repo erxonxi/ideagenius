@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 
 import '../components/note_card.dart';
+import '../utils/note_colors.dart';
+import '../utils/notes_storage.dart';
 
 class CreateNotePage extends StatefulWidget {
   const CreateNotePage({super.key});
@@ -64,11 +66,12 @@ class _CreateNotePageState extends State<CreateNotePage> {
               onPressed: () {
                 if (_formKey.currentState?.validate() ?? false) {
                   _formKey.currentState?.save();
-                  final note = NoteCard(
-                    color: Colors.grey.shade200,
+                  final note = Note(
                     title: _title,
                     content: _content,
+                    color: randomNoteColor().value.toString(),
                     date: DateTime.now().toString(),
+                    time: DateTime.now().toString(),
                   );
                   Navigator.of(context).pop(note);
                 }

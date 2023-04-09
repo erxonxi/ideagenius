@@ -4,6 +4,7 @@ import 'package:yaru/yaru.dart';
 
 import 'components/note_card.dart';
 import 'pages/create_note.dart';
+import 'utils/notes_storage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -72,39 +73,43 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _visitCreateNotePage() {
-    Navigator.pushNamed(context, "/create-note");
+  List<Note> _notes = [];
+
+  Future<void> _visitCreateNotePage() async {
+    final note = await Navigator.pushNamed(context, "/create-note") as Note?;
+    if (note != null) {
+      await NotesStorage.addNote(note);
+      _loadNotes();
+    }
+  }
+
+  Future<void> _loadNotes() async {
+    final notes = await NotesStorage.getNotes();
+    setState(() {
+      _notes = notes;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadNotes();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          const Text(
-            'Notas',
-            style: TextStyle(
-              fontSize: 32.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          NoteCard(
-              color: randomNoteColor(),
-              title: "Cocinar un estofado",
-              content: "Primero se pica la carne, luego se pone en la olla",
-              date: "2022-01-01"),
-          NoteCard(
-              color: randomNoteColor(),
-              title: "Programar una app",
-              content: "Primero se pone el código, luego se compila",
-              date: "2022-02-01"),
-          NoteCard(
-              color: randomNoteColor(),
-              title: "Programar una app",
-              content: "Primero se pone el código, luego se compila",
-              date: "2022-02-01"),
-        ],
+      body: ListView.builder(
+        itemCount: _notes.length,
+        itemBuilder: (context, index) {
+          final note = _notes[index];
+          return NoteCard(
+            color: Color(int.parse(note.color)),
+            title: note.title,
+            content: note.content,
+            date: note.date,
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _visitCreateNotePage,
