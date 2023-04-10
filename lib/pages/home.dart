@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  TextEditingController _thinkController = TextEditingController();
+  final TextEditingController _thinkController = TextEditingController();
 
   Future<void> _showCreateThinkDialog() async {
     return showDialog<void>(
