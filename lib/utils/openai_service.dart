@@ -4,13 +4,13 @@ import 'dart:convert';
 import "package:http/http.dart" as http;
 
 Future<String> createTodoesOfThink(String apiKey, String think) async {
-  return await promptCompletion(apiKey,
-      "Response same lenguage of think. Create short and specific todoes. Create todoes for following think: $think");
+  return await promptCompletion(
+      apiKey, "Crea los passos para lograr la siguiente idea: $think");
 }
 
 Future<String> createSummary(String apiKey, String topic) async {
   return await promptCompletion(
-      apiKey, "Resumir los conceptos clave del siguiente tema: $topic");
+      apiKey, "Resumir el siguiente tema en un maximo de 255 palabras: $topic");
 }
 
 Future<String> createQuestions(String apiKey, String note) async {
@@ -28,7 +28,7 @@ Future<String> promptCompletion(String apiKey, String prompt) async {
     body: json.encode({
       "model": "text-davinci-003",
       "prompt": prompt,
-      "max_tokens": 128,
+      "max_tokens": 255,
       "temperature": 0
     }),
   );
