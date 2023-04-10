@@ -6,7 +6,9 @@ import 'package:yaru/yaru.dart';
 import '../components/note_card.dart';
 import '../main.dart';
 import '../utils/config_storage.dart';
+import '../utils/note_colors.dart';
 import '../utils/notes_storage.dart';
+import '../utils/openai_service.dart';
 import 'note_view.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,6 +27,55 @@ class _HomePageState extends State<HomePage> {
       await NotesStorage.addNote(note);
       _loadNotes();
     }
+  }
+
+  TextEditingController _thinkController = TextEditingController();
+
+  Future<void> _showCreateThinkDialog() async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Create thinks to do'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: [
+                TextField(
+                  controller: _thinkController,
+                  decoration: const InputDecoration(
+                    labelText: "Think",
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                _createTodoesOfThink();
+              },
+              child: const Text('Create'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _createTodoesOfThink() async {
+    final apiKey = (await ConfigStorage.getConfig()).openAiKey;
+    final think = _thinkController.text;
+    final todoes = await createTodoesOfThink(apiKey, think);
+    final note = Note(
+      title: "Todoes for $think",
+      content: todoes,
+      color: randomNoteColor().value.toString(),
+      date: DateTime.now().toString(),
+      time: DateTime.now().toString(),
+    );
+    await NotesStorage.addNote(note);
+    _loadNotes();
   }
 
   Future<void> _visitConfigPage() async {
@@ -103,7 +154,7 @@ class _HomePageState extends State<HomePage> {
               child: const Icon(Icons.lightbulb),
               label: 'Create thinks to do',
               backgroundColor: Colors.grey,
-              onTap: () {/* Do something */},
+              onTap: _showCreateThinkDialog,
             ),
             SpeedDialChild(
               child: const Icon(Icons.settings),
