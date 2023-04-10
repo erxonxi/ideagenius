@@ -4,10 +4,18 @@ import 'dart:convert';
 import "package:http/http.dart" as http;
 
 Future<String> createTodoesOfThink(String apiKey, String think) async {
-  final response = await promptCompletion(apiKey,
+  return await promptCompletion(apiKey,
       "Response same lenguage of think. Create short and specific todoes. Create todoes for following think: $think");
+}
 
-  return response;
+Future<String> createSummary(String apiKey, String topic) async {
+  return await promptCompletion(
+      apiKey, "Resumir los conceptos clave del siguiente tema: $topic");
+}
+
+Future<String> createQuestions(String apiKey, String note) async {
+  return await promptCompletion(apiKey,
+      "Crear 5 preguntas de repaso basadas en la siguiente nota: $note");
 }
 
 Future<String> promptCompletion(String apiKey, String prompt) async {
