@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:yaru/yaru.dart';
 
 import '../components/note_card.dart';
@@ -71,14 +72,29 @@ class _HomePageState extends State<HomePage> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _visitCreateNotePage,
-        tooltip: 'Add',
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.0),
-        ),
-        child: const Icon(Icons.add),
-      ),
+      floatingActionButton: SpeedDial(
+          icon: Icons.window_rounded,
+          overlayColor: Colors.black,
+          children: [
+            SpeedDialChild(
+              child: const Icon(Icons.add),
+              label: 'Add',
+              backgroundColor: Colors.grey,
+              onTap: _visitCreateNotePage,
+            ),
+            SpeedDialChild(
+              child: const Icon(Icons.lightbulb),
+              label: 'Create thinks to do',
+              backgroundColor: Colors.grey,
+              onTap: () {/* Do something */},
+            ),
+            SpeedDialChild(
+              child: const Icon(Icons.settings),
+              label: 'Settings',
+              backgroundColor: Colors.grey,
+              onTap: () {/* Do something */},
+            ),
+          ]),
     );
   }
 }
