@@ -55,6 +55,12 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
           onTap: _showQuestionsDialog,
         ),
         SpeedDialChild(
+          child: const Icon(Icons.abc_rounded),
+          label: 'Custom',
+          backgroundColor: Colors.grey,
+          onTap: _showCustomPrompt,
+        ),
+        SpeedDialChild(
           child: const Icon(Icons.settings_rounded),
           label: 'Settings',
           backgroundColor: Colors.grey,
@@ -122,7 +128,6 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
     widget.onTaskCreated();
   }
 
-  // same as _showSumarizeDialog and _createSumarize for _showQuestionsDialog and _createQuestions using createQuestions of openai_service.dart
   Future<void> _showQuestionsDialog() async {
     return showDialog<void>(
       context: context,
@@ -213,6 +218,56 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
     final note = Note(
       title: think,
       content: todoes,
+      color: randomNoteColor().value.toString(),
+      date: DateTime.now().toString(),
+      time: DateTime.now().toString(),
+    );
+    await NotesStorage.addNote(note);
+    widget.onTaskCreated();
+  }
+
+  Future<void> _showCustomPrompt() async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Custom'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: [
+                TextField(
+                  controller: _thinkController,
+                  minLines: 4,
+                  maxLines: 64,
+                  decoration: const InputDecoration(
+                    labelText: "Content",
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                _createNoteCustomPrompt();
+              },
+              child: const Text('Create'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _createNoteCustomPrompt() async {
+    final apiKey = (await ConfigStorage.getConfig()).openAiKey;
+    final think = _thinkController.text;
+    _thinkController.clear();
+    final res = await promptCompletion(apiKey, think);
+    final note = Note(
+      title: "Custom Prompt",
+      content: res,
       color: randomNoteColor().value.toString(),
       date: DateTime.now().toString(),
       time: DateTime.now().toString(),
