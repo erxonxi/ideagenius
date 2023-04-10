@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:yaru/yaru.dart';
 
@@ -50,17 +51,35 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        itemCount: _notes.length,
-        itemBuilder: (context, index) {
-          final note = _notes[index];
-          return NoteCard(
-            color: Color(int.parse(note.color)),
-            title: note.title,
-            content: note.content,
-            date: note.date,
-            onDelete: () => _deleteNote(note),
-            onTap: () => _visitNoteViewPage(note),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          int crossAxisCount;
+          double screenWidth = MediaQuery.of(context).size.width;
+
+          if (screenWidth >= 1200) {
+            crossAxisCount = 4;
+          } else if (screenWidth >= 900) {
+            crossAxisCount = 2;
+          } else {
+            crossAxisCount = 1;
+          }
+
+          return GridView.count(
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: 10.0,
+            mainAxisSpacing: 10.0,
+            padding: const EdgeInsets.all(10.0),
+            children: List.generate(_notes.length, (index) {
+              final note = _notes[index];
+              return NoteCard(
+                color: Color(int.parse(note.color)),
+                title: note.title,
+                content: note.content,
+                date: note.date,
+                onDelete: () => _deleteNote(note),
+                onTap: () => _visitNoteViewPage(note),
+              );
+            }),
           );
         },
       ),

@@ -23,7 +23,6 @@ class NoteCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Card(
-        margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.0),
         ),
@@ -57,6 +56,7 @@ class NoteCard extends StatelessWidget {
                 const SizedBox(height: 8.0),
                 Text(
                   content,
+                  maxLines: 10,
                   style: const TextStyle(
                     fontSize: 14.0,
                     color: Colors.black54,
