@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:ideagenis/pages/config_view.dart';
 import 'package:yaru/yaru.dart';
 
 import '../components/note_card.dart';
 import '../main.dart';
+import '../utils/config_storage.dart';
 import '../utils/notes_storage.dart';
 import 'note_view.dart';
 
@@ -23,6 +25,21 @@ class _HomePageState extends State<HomePage> {
       await NotesStorage.addNote(note);
       _loadNotes();
     }
+  }
+
+  Future<void> _visitConfigPage() async {
+    Config config = await ConfigStorage.getConfig();
+
+    // ignore: use_build_context_synchronously
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => YaruTheme(
+          data: AppTheme.of(context),
+          child: ConfigViewPage(config: config),
+        ),
+      ),
+    );
   }
 
   Future<void> _loadNotes() async {
@@ -92,7 +109,7 @@ class _HomePageState extends State<HomePage> {
               child: const Icon(Icons.settings),
               label: 'Settings',
               backgroundColor: Colors.grey,
-              onTap: () {/* Do something */},
+              onTap: _visitConfigPage,
             ),
           ]),
     );
