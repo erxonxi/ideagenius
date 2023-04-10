@@ -2,8 +2,13 @@
 
 IdeaGenius es una aplicación de notas intuitiva y elegante para guardar tus ideas y pensamientos. Desarrollada con Flutter, esta aplicación multiplataforma te permite llevar tus ideas contigo en cualquier dispositivo y sistema operativo.
 
-![IdeaGenius Screenshot](./screenshots/IdeaGenius_screenshot_01.png)
-![IdeaGenius Screenshot2](./screenshots/IdeaGenius_screenshot_02.png)
+<!-- GRID SCREENSHOTS RESPONSIVE -->
+<div style="display: flex; flex-direction: row; justify-content: space-between;">
+  <img src="./screenshots/Screenshot1.png" width="200" />
+  <img src="./screenshots/Screenshot2.png" width="200" />
+  <img src="./screenshots/Screenshot3.png" width="200" />
+  <img src="./screenshots/Screenshot4.png" width="200" />
+</div>
 
 ## Características
 
