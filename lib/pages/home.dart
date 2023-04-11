@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:yaru/yaru.dart';
+import 'package:ideagenis/theme/theme_manager.dart';
 
 import '../components/note_card.dart';
 import '../components/speed_dial.dart';
-import '../main.dart';
 import '../utils/notes_storage.dart';
 import 'note_view.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final ThemeManager themeManager;
+
+  const HomePage({super.key, required this.themeManager});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -17,32 +18,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Note> _notes = [];
 
-  Future<void> _loadNotes() async {
-    final notes = await NotesStorage.getNotes();
-    setState(() {
-      _notes = notes;
-    });
-  }
-
-  Future<void> _deleteNote(Note note) async {
-    await NotesStorage.deleteNote(note);
-    _loadNotes();
-  }
-
-  void _visitNoteViewPage(Note note) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => YaruTheme(
-          data: AppTheme.of(context),
-          child: NoteViewPage(note: note),
-        ),
-      ),
-    );
+  @override
+  void dispose() {
+    widget.themeManager.removeListener(themeListener);
+    super.dispose();
   }
 
   @override
   void initState() {
+    widget.themeManager.addListener(themeListener);
     super.initState();
     _loadNotes();
   }
@@ -50,6 +34,23 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("IdeaGenius"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              Navigator.pushNamed(context, "/config");
+            },
+          ),
+          Switch(
+            value: widget.themeManager.themeMode == ThemeMode.dark,
+            onChanged: (value) {
+              widget.themeManager.toggleTheme(true);
+            },
+          ),
+        ],
+      ),
       body: LayoutBuilder(
         builder: (context, constraints) {
           int crossAxisCount;
@@ -86,5 +87,32 @@ class _HomePageState extends State<HomePage> {
         onTaskCreated: _loadNotes,
       ),
     );
+  }
+
+  Future<void> _loadNotes() async {
+    final notes = await NotesStorage.getNotes();
+    setState(() {
+      _notes = notes;
+    });
+  }
+
+  Future<void> _deleteNote(Note note) async {
+    await NotesStorage.deleteNote(note);
+    _loadNotes();
+  }
+
+  void _visitNoteViewPage(Note note) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => NoteViewPage(note: note),
+      ),
+    );
+  }
+
+  void themeListener() {
+    if (mounted) {
+      setState(() {});
+    }
   }
 }

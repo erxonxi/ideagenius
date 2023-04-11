@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:ideagenis/pages/config_view.dart';
-import 'package:yaru/yaru.dart';
 
-import '../main.dart';
 import '../utils/config_storage.dart';
 import '../utils/note_colors.dart';
 import '../utils/notes_storage.dart';
@@ -283,10 +281,7 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => YaruTheme(
-          data: AppTheme.of(context),
-          child: ConfigViewPage(config: config),
-        ),
+        builder: (context) => ConfigViewPage(config: config),
       ),
     );
   }

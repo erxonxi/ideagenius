@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yaru/yaru.dart';
+import 'package:ideagenis/theme/theme_consts.dart';
+import 'package:ideagenis/theme/theme_manager.dart';
 
 import 'pages/create_note.dart';
 import 'pages/home.dart';
@@ -8,6 +9,8 @@ void main() {
   runApp(const MyApp());
 }
 
+ThemeManager _themeManager = ThemeManager();
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -15,52 +18,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'IdeaGenius',
-      home: Builder(
-        builder: (context) => YaruTheme(
-          data: AppTheme.of(context),
-          child: const HomePage(),
-        ),
+      home: HomePage(
+        themeManager: _themeManager,
       ),
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: _themeManager.themeMode,
       debugShowCheckedModeBanner: false,
       routes: {
-        "/create-note": applyYaru(context, const CreateNotePage()),
+        "/create-note": (context) => const CreateNotePage(),
       },
-    );
-  }
-}
-
-WidgetBuilder applyYaru(BuildContext context, Widget page) {
-  return (context) => Builder(
-        builder: (context) => YaruTheme(
-          data: AppTheme.of(context),
-          child: page,
-        ),
-      );
-}
-
-class AppTheme {
-  static YaruThemeData of(BuildContext context) {
-    return SharedAppData.getValue(
-      context,
-      'theme',
-      () => const YaruThemeData(),
-    );
-  }
-
-  static void apply(
-    BuildContext context, {
-    YaruVariant? variant,
-    bool? highContrast,
-    ThemeMode? themeMode,
-  }) {
-    SharedAppData.setValue(
-      context,
-      'theme',
-      AppTheme.of(context).copyWith(
-        themeMode: themeMode,
-        variant: variant,
-        highContrast: highContrast,
-      ),
     );
   }
 }
