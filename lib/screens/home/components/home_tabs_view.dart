@@ -25,17 +25,61 @@ class HomeTabsView extends StatelessWidget {
         return IndexedStack(
           index: currentIndex,
           children: [
-            ListView.builder(
-              itemCount: notes.length,
-              itemBuilder: (context, index) {
-                final note = notes[index];
-                return NoteCard(
-                  onDelete: () => onNoteDelete(note),
-                  onTap: () => onNoteTap(note),
-                  color: Color(int.parse(note.color)),
-                  title: note.title,
-                  content: note.content,
-                  date: note.date,
+            LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                Widget noteList;
+
+                if (constraints.maxWidth < 600) {
+                  noteList = Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: notes.map((note) {
+                      return NoteCard(
+                        onDelete: () => onNoteDelete(note),
+                        onTap: () => onNoteTap(note),
+                        color: Color(int.parse(note.color)),
+                        title: note.title,
+                        content: note.content,
+                        date: note.date,
+                      );
+                    }).toList(),
+                  );
+                } else {
+                  int crossAxisCount = 2;
+
+                  if (constraints.maxWidth > 900) {
+                    crossAxisCount = 3;
+                  }
+
+                  noteList = GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: crossAxisCount,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8,
+                      childAspectRatio: MediaQuery.of(context).orientation ==
+                              Orientation.portrait
+                          ? 0.7
+                          : 1.5,
+                    ),
+                    padding: const EdgeInsets.all(8.0),
+                    itemCount: notes.length,
+                    itemBuilder: (context, index) {
+                      final note = notes[index];
+                      return NoteCard(
+                        onDelete: () => onNoteDelete(note),
+                        onTap: () => onNoteTap(note),
+                        color: Color(int.parse(note.color)),
+                        title: note.title,
+                        content: note.content,
+                        date: note.date,
+                      );
+                    },
+                  );
+                }
+
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: noteList,
                 );
               },
             ),
