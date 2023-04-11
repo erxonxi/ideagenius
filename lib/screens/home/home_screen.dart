@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../blocs/tabs/tabs_bloc.dart';
 import '../../blocs/theme/theme_bloc.dart';
 import '../../components/speed_dial.dart';
 import '../../utils/config_storage.dart';
