@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:ideagenis/pages/config_view.dart';
 
 import '../utils/config_storage.dart';
 import '../utils/note_colors.dart';
@@ -57,12 +56,6 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
           label: 'Custom',
           backgroundColor: Colors.grey,
           onTap: _showCustomPrompt,
-        ),
-        SpeedDialChild(
-          child: const Icon(Icons.settings_rounded),
-          label: 'Settings',
-          backgroundColor: Colors.grey,
-          onTap: _visitConfigPage,
         ),
       ],
     );
@@ -272,17 +265,5 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
     );
     await NotesStorage.addNote(note);
     widget.onTaskCreated();
-  }
-
-  Future<void> _visitConfigPage() async {
-    Config config = await ConfigStorage.getConfig();
-
-    // ignore: use_build_context_synchronously
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ConfigViewPage(config: config),
-      ),
-    );
   }
 }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ideagenis/theme/theme_consts.dart';
 import 'package:ideagenis/theme/theme_manager.dart';
 
-import 'pages/create_note.dart';
-import 'pages/home.dart';
+import 'screens/create_note.dart';
+import 'screens/home/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'IdeaGenius',
-      home: HomePage(
+      home: HomeScreen(
         themeManager: _themeManager,
       ),
       theme: lightTheme,
