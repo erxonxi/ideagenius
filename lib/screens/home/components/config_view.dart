@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../utils/config_storage.dart';
 
 class ConfigView extends StatefulWidget {
-  final Config config;
-
-  const ConfigView({Key? key, required this.config}) : super(key: key);
+  const ConfigView({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -13,9 +11,26 @@ class ConfigView extends StatefulWidget {
 }
 
 class _ConfigViewState extends State<ConfigView> {
+  Config _config = Config(openAiKey: "");
+
+  final openApiKeyController = TextEditingController();
+
+  @override
+  initState() {
+    super.initState();
+    _loadConfig();
+  }
+
   Future<void> _saveConfig() async {
     await ConfigStorage.setConfig(
-      widget.config,
+      _config,
+    );
+
+    // ignore: use_build_context_synchronously
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Config saved"),
+      ),
     );
   }
 
@@ -27,10 +42,10 @@ class _ConfigViewState extends State<ConfigView> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextFormField(
-            initialValue: widget.config.openAiKey,
+            controller: openApiKeyController,
             onChanged: (value) {
               setState(() {
-                widget.config.openAiKey = value;
+                _config.openAiKey = value;
               });
             },
             style: const TextStyle(
@@ -49,5 +64,15 @@ class _ConfigViewState extends State<ConfigView> {
         ],
       ),
     );
+  }
+
+  Future<void> _loadConfig() async {
+    final config = await ConfigStorage.getConfig();
+
+    setState(() {
+      _config = config;
+    });
+
+    openApiKeyController.text = _config.openAiKey;
   }
 }

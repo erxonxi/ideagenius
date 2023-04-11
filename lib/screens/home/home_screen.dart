@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/theme/theme_bloc.dart';
 import '../../components/speed_dial.dart';
-import '../../utils/config_storage.dart';
 import '../../utils/notes_storage.dart';
 import '../note_view.dart';
 import 'components/home_bottom_navigator.dart';
@@ -18,7 +17,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Note> _notes = [];
-  Config _config = Config(openAiKey: "");
 
   @override
   void dispose() {
@@ -29,7 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _loadNotes();
-    _loadConfig();
   }
 
   @override
@@ -54,7 +51,6 @@ class _HomeScreenState extends State<HomeScreen> {
             notes: _notes,
             onNoteDelete: _deleteNote,
             onNoteTap: _visitNoteViewPage,
-            config: _config,
           ),
           bottomNavigationBar: const HomeBottomNavigator(),
           floatingActionButton: SpeedDialAddTask(
@@ -90,12 +86,5 @@ class _HomeScreenState extends State<HomeScreen> {
     if (mounted) {
       setState(() {});
     }
-  }
-
-  Future<void> _loadConfig() async {
-    final config = await ConfigStorage.getConfig();
-    setState(() {
-      _config = config;
-    });
   }
 }

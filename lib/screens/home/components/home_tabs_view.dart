@@ -4,21 +4,18 @@ import 'package:ideagenis/screens/home/components/config_view.dart';
 
 import '../../../blocs/tabs/tabs_bloc.dart';
 import '../../../components/note_card.dart';
-import '../../../utils/config_storage.dart';
 import '../../../utils/notes_storage.dart';
 
 class HomeTabsView extends StatelessWidget {
   final List<Note> notes;
   final Function(Note) onNoteDelete;
   final Function(Note) onNoteTap;
-  final Config config;
 
   const HomeTabsView({
     super.key,
     required this.notes,
     required this.onNoteDelete,
     required this.onNoteTap,
-    required this.config,
   });
 
   @override
@@ -46,7 +43,7 @@ class HomeTabsView extends StatelessWidget {
               child: Text("Todo"),
             ),
             // Settings
-            ConfigView(config: config)
+            const ConfigView()
           ],
         );
       },
