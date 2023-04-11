@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ideagenis/theme/theme_consts.dart';
 
 import 'blocs/tabs/tabs_bloc.dart';
 import 'blocs/theme/theme_bloc.dart';
 import 'screens/create_note.dart';
 import 'screens/home/home_screen.dart';
+import 'theme/theme_consts.dart';
 
 void main() {
   runApp(const MyApp());
