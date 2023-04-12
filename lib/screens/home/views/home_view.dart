@@ -90,8 +90,15 @@ class _HomeViewState extends State<HomeView> {
   _onNoteTap(Note note) {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (context) => NoteScreen(note: note),
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 200),
+        pageBuilder: (BuildContext context, Animation<double> animation,
+            Animation<double> secondaryAnimation) {
+          return FadeTransition(
+            opacity: animation,
+            child: NoteScreen(note: note),
+          );
+        },
       ),
     );
   }
