@@ -21,6 +21,7 @@ dependencies:
   flutter_bloc: ^8.1.2
   equatable: ^2.0.5
   bloc: ^8.1.1
+  flutter_quill: ^7.1.4
 
 dev_dependencies:
   flutter_test:

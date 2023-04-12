@@ -1,5 +1,10 @@
 // Create Note Page Widget
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_quill/flutter_quill.dart';
+import 'package:ideagenis/blocs/notes/notes_bloc.dart';
 
 import '../utils/note_colors.dart';
 import '../utils/notes_storage.dart';
@@ -13,77 +18,64 @@ class CreateNoteScreen extends StatefulWidget {
 }
 
 class _CreateNoteScreenState extends State<CreateNoteScreen> {
-  final _formKey = GlobalKey<FormState>();
-
-  String _title = "";
-  String _content = "";
+  final QuillController _controller = QuillController.basic();
+  final _title = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("New Note"),
-      ),
-      body: Form(
-        key: _formKey,
-        child: ListView(
-          padding: const EdgeInsets.all(16.0),
-          children: [
-            TextFormField(
-              decoration: const InputDecoration(labelText: "Title"),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Please enter a title";
-                }
-                return null;
-              },
-              onSaved: (value) {
-                _title = value ?? "";
-              },
-            ),
-            const SizedBox(height: 16.0),
-            TextFormField(
-              keyboardType: TextInputType.multiline,
-              minLines: 4,
-              maxLines: 50,
-              decoration: const InputDecoration(labelText: "Content"),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Please enter a content";
-                }
-                return null;
-              },
-              onSaved: (value) {
-                _content = value ?? "";
-              },
-            ),
-            const SizedBox(height: 16.0),
-            FilledButton(
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4.0),
-                  ),
-                ),
-              ),
-              onPressed: () {
-                if (_formKey.currentState?.validate() ?? false) {
-                  _formKey.currentState?.save();
-                  final note = Note(
-                    title: _title,
-                    content: _content,
+    return BlocBuilder<NotesBloc, NotesState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.save),
+                onPressed: () {
+                  Note note = Note(
+                    title: _title.text,
+                    content:
+                        json.encode(_controller.document.toDelta().toJson()),
                     color: randomNoteColor().value.toString(),
                     date: DateTime.now().toString(),
                     time: DateTime.now().toString(),
                   );
-                  Navigator.of(context).pop(note);
-                }
-              },
-              child: const Text("Save"),
-            ),
-          ],
-        ),
-      ),
+
+                  context.read<NotesBloc>().add(NotesAdd(note));
+
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+          body: Column(
+            children: [
+              Container(
+                  padding: const EdgeInsets.all(8),
+                  child: Column(
+                    children: [
+                      TextField(
+                        controller: _title,
+                        decoration: const InputDecoration(
+                          labelText: "Note Title",
+                        ),
+                      ),
+                      const Divider(),
+                      QuillToolbar.basic(controller: _controller),
+                    ],
+                  )),
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  child: QuillEditor.basic(
+                    controller: _controller,
+                    readOnly: false,
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 }

@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../screens/config_screen.dart';
 import '../../blocs/theme/theme_bloc.dart';
 import '../../components/speed_dial.dart';
-import '../../utils/notes_storage.dart';
-import '../note_screen.dart';
 import 'components/home_bottom_navigator.dart';
 import 'components/home_drawer.dart';
 import 'components/home_tabs_view.dart';
@@ -18,19 +16,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Note> _notes = [];
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _loadNotes();
-  }
-
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -56,39 +41,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
           drawer: isTabletOrDesktop ? const HomeDrawer() : null,
-          body: HomeTabsView(
-            notes: _notes,
-            onNoteDelete: _deleteNote,
-            onNoteTap: _visitNoteViewPage,
-          ),
+          body: const HomeTabsView(),
           bottomNavigationBar:
               isTabletOrDesktop ? null : const HomeBottomNavigator(),
-          floatingActionButton: SpeedDialAddTask(
-            onTaskCreated: _loadNotes,
-          ),
+          floatingActionButton: const SpeedDialAddTask(),
         );
       },
-    );
-  }
-
-  Future<void> _loadNotes() async {
-    final notes = await NotesStorage.getNotes();
-    setState(() {
-      _notes = notes;
-    });
-  }
-
-  Future<void> _deleteNote(Note note) async {
-    await NotesStorage.deleteNote(note);
-    _loadNotes();
-  }
-
-  void _visitNoteViewPage(Note note) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => NoteScreen(note: note),
-      ),
     );
   }
 
@@ -99,11 +57,5 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context) => const ConfigScreen(),
       ),
     );
-  }
-
-  void themeListener() {
-    if (mounted) {
-      setState(() {});
-    }
   }
 }

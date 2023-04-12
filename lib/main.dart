@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ideagenis/blocs/notes/notes_bloc.dart';
 
 import 'blocs/tabs/tabs_bloc.dart';
 import 'blocs/theme/theme_bloc.dart';
@@ -57,6 +58,7 @@ class _MyAppStatesState extends State<MyAppStates> {
       BlocProvider<TabsBloc>(
         create: (_) => TabsBloc(),
       ),
+      BlocProvider(create: (_) => NotesBloc()),
     ], child: widget.child);
   }
 }

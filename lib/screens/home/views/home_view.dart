@@ -1,80 +1,102 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ideagenis/blocs/notes/notes_bloc.dart';
+import 'package:ideagenis/screens/note_screen.dart';
 
 import '../../../components/note_card.dart';
 import '../../../utils/notes_storage.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({
-    super.key,
-    required this.notes,
-    required this.onNoteDelete,
-    required this.onNoteTap,
-  });
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
 
-  final List<Note> notes;
-  final Function(Note p1) onNoteDelete;
-  final Function(Note p1) onNoteTap;
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<NotesBloc>().add(NotesLoad());
+  }
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        Widget noteList;
+    return BlocBuilder<NotesBloc, NotesState>(
+      builder: (context, state) {
+        return LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            Widget noteList;
 
-        if (constraints.maxWidth < 600) {
-          noteList = ListView.builder(
-            padding: const EdgeInsets.all(8.0),
-            itemCount: notes.length,
-            itemBuilder: (context, index) {
-              final note = notes[index];
-              return NoteCard(
-                onDelete: () => onNoteDelete(note),
-                onTap: () => onNoteTap(note),
-                color: Color(int.parse(note.color)),
-                title: note.title,
-                content: note.content,
-                date: note.date,
+            if (constraints.maxWidth < 600) {
+              noteList = ListView.builder(
+                padding: const EdgeInsets.all(8.0),
+                itemCount: state.notes.length,
+                itemBuilder: (context, index) {
+                  final note = state.notes[index];
+                  return NoteCard(
+                    onDelete: () => _onNoteDelete(note),
+                    onTap: () => _onNoteTap(note),
+                    color: Color(int.parse(note.color)),
+                    title: note.title,
+                    content: note.content,
+                    date: note.date,
+                  );
+                },
               );
-            },
-          );
-        } else {
-          int crossAxisCount = 2;
+            } else {
+              int crossAxisCount = 2;
 
-          if (constraints.maxWidth > 900) {
-            crossAxisCount = 3;
-          }
+              if (constraints.maxWidth > 900) {
+                crossAxisCount = 3;
+              }
 
-          noteList = GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: crossAxisCount,
-              crossAxisSpacing: 8,
-              mainAxisSpacing: 8,
-              childAspectRatio:
-                  MediaQuery.of(context).orientation == Orientation.portrait
-                      ? 0.7
-                      : 1.5,
-            ),
-            padding: const EdgeInsets.all(8.0),
-            itemCount: notes.length,
-            itemBuilder: (context, index) {
-              final note = notes[index];
-              return NoteCard(
-                onDelete: () => onNoteDelete(note),
-                onTap: () => onNoteTap(note),
-                color: Color(int.parse(note.color)),
-                title: note.title,
-                content: note.content,
-                date: note.date,
+              noteList = GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: crossAxisCount,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                  childAspectRatio:
+                      MediaQuery.of(context).orientation == Orientation.portrait
+                          ? 0.7
+                          : 1.5,
+                ),
+                padding: const EdgeInsets.all(8.0),
+                itemCount: state.notes.length,
+                itemBuilder: (context, index) {
+                  final note = state.notes[index];
+                  return NoteCard(
+                    onDelete: () => _onNoteDelete(note),
+                    onTap: () => _onNoteTap(note),
+                    color: Color(int.parse(note.color)),
+                    title: note.title,
+                    content: note.content,
+                    date: note.date,
+                  );
+                },
               );
-            },
-          );
-        }
+            }
 
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: noteList,
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: noteList,
+            );
+          },
         );
       },
     );
+  }
+
+  _onNoteTap(Note note) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => NoteScreen(note: note),
+      ),
+    );
+  }
+
+  _onNoteDelete(Note note) {
+    context.read<NotesBloc>().add(NotesDelete(note));
   }
 }

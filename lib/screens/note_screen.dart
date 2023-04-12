@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart' as quill;
 
 import '../utils/notes_storage.dart';
 
@@ -13,30 +16,46 @@ class NoteScreen extends StatefulWidget {
 }
 
 class _NoteScreenState extends State<NoteScreen> {
+  final quill.QuillController _controller = quill.QuillController.basic();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.document = quill.Document.fromJson(
+      quill.Delta.fromJson(json.decode(widget.note.content)).toJson(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.note.title),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.edit_rounded),
+            onPressed: () {
+              NotesStorage.deleteNote(widget.note);
+              Navigator.pop(context);
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.delete_rounded),
+            onPressed: () {
+              NotesStorage.deleteNote(widget.note);
+              Navigator.pop(context);
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              widget.note.content,
-              style: const TextStyle(
-                fontSize: 16.0,
-              ),
-            ),
-            const SizedBox(height: 16.0),
-            Text(
-              "Date: ${widget.note.date}\nTime: ${widget.note.time}",
-              style: const TextStyle(
-                fontSize: 14.0,
-                color: Colors.grey,
-              ),
+            quill.QuillEditor.basic(
+              controller: _controller,
+              readOnly: true,
             ),
           ],
         ),

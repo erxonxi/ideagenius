@@ -55,15 +55,6 @@ class NoteCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 8.0),
                 Text(
-                  content,
-                  maxLines: 8,
-                  style: const TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.black54,
-                  ),
-                ),
-                const SizedBox(height: 8.0),
-                Text(
                   date,
                   style: const TextStyle(
                     fontSize: 12.0,
