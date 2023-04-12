@@ -7,6 +7,7 @@ import '../../components/speed_dial.dart';
 import '../../utils/notes_storage.dart';
 import '../note_screen.dart';
 import 'components/home_bottom_navigator.dart';
+import 'components/home_drawer.dart';
 import 'components/home_tabs_view.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -32,6 +33,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    bool isTabletOrDesktop = screenWidth >= 600;
+
     return BlocBuilder<ThemeBloc, ThemeMode>(
       builder: (context, state) {
         return Scaffold(
@@ -51,12 +55,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
+          drawer: isTabletOrDesktop ? const HomeDrawer() : null,
           body: HomeTabsView(
             notes: _notes,
             onNoteDelete: _deleteNote,
             onNoteTap: _visitNoteViewPage,
           ),
-          bottomNavigationBar: const HomeBottomNavigator(),
+          bottomNavigationBar:
+              isTabletOrDesktop ? null : const HomeBottomNavigator(),
           floatingActionButton: SpeedDialAddTask(
             onTaskCreated: _loadNotes,
           ),
