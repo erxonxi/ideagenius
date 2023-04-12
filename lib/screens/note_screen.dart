@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
+import 'package:ideagenis/blocs/notes/notes_bloc.dart';
 
 import '../utils/notes_storage.dart';
 
@@ -28,38 +30,42 @@ class _NoteScreenState extends State<NoteScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.note.title),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.edit_rounded),
-            onPressed: () {
-              NotesStorage.deleteNote(widget.note);
-              Navigator.pop(context);
-            },
+    return BlocBuilder<NotesBloc, NotesState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(widget.note.title),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.edit_rounded),
+                onPressed: () {
+                  context.read<NotesBloc>().add(NotesUpdate(widget.note));
+                  Navigator.pop(context);
+                },
+              ),
+              IconButton(
+                icon: const Icon(Icons.delete_rounded),
+                onPressed: () {
+                  context.read<NotesBloc>().add(NotesDelete(widget.note));
+                  Navigator.pop(context);
+                },
+              ),
+            ],
           ),
-          IconButton(
-            icon: const Icon(Icons.delete_rounded),
-            onPressed: () {
-              NotesStorage.deleteNote(widget.note);
-              Navigator.pop(context);
-            },
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            quill.QuillEditor.basic(
-              controller: _controller,
-              readOnly: true,
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                quill.QuillEditor.basic(
+                  controller: _controller,
+                  readOnly: true,
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
