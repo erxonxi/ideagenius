@@ -20,6 +20,8 @@ class NoteScreen extends StatefulWidget {
 class _NoteScreenState extends State<NoteScreen> {
   final quill.QuillController _controller = quill.QuillController.basic();
 
+  bool _isEditing = false;
+
   @override
   void initState() {
     super.initState();
@@ -37,10 +39,17 @@ class _NoteScreenState extends State<NoteScreen> {
             title: Text(widget.note.title),
             actions: [
               IconButton(
-                icon: const Icon(Icons.edit_rounded),
+                icon: Icon(_isEditing ? Icons.save : Icons.edit),
                 onPressed: () {
-                  context.read<NotesBloc>().add(NotesUpdate(widget.note));
-                  Navigator.pop(context);
+                  if (_isEditing) {
+                    widget.note.content =
+                        json.encode(_controller.document.toDelta().toJson());
+                    context.read<NotesBloc>().add(NotesUpdate(widget.note));
+                  }
+
+                  setState(() {
+                    _isEditing = !_isEditing;
+                  });
                 },
               ),
               IconButton(
@@ -57,9 +66,13 @@ class _NoteScreenState extends State<NoteScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                _isEditing
+                    ? quill.QuillToolbar.basic(controller: _controller)
+                    : Container(),
+                const Divider(),
                 quill.QuillEditor.basic(
                   controller: _controller,
-                  readOnly: true,
+                  readOnly: !_isEditing,
                 ),
               ],
             ),
