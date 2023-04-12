@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import '../utils/note_colors.dart';
 import '../utils/notes_storage.dart';
 
-class CreateNotePage extends StatefulWidget {
-  const CreateNotePage({super.key});
+class CreateNoteScreen extends StatefulWidget {
+  const CreateNoteScreen({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _CreateNotePageState createState() => _CreateNotePageState();
+  _CreateNoteScreenState createState() => _CreateNoteScreenState();
 }
 
-class _CreateNotePageState extends State<CreateNotePage> {
+class _CreateNoteScreenState extends State<CreateNoteScreen> {
   final _formKey = GlobalKey<FormState>();
 
   String _title = "";
@@ -30,9 +30,7 @@ class _CreateNotePageState extends State<CreateNotePage> {
           padding: const EdgeInsets.all(16.0),
           children: [
             TextFormField(
-              decoration: const InputDecoration(
-                labelText: "Title",
-              ),
+              decoration: const InputDecoration(labelText: "Title"),
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return "Please enter a title";
@@ -46,11 +44,9 @@ class _CreateNotePageState extends State<CreateNotePage> {
             const SizedBox(height: 16.0),
             TextFormField(
               keyboardType: TextInputType.multiline,
-              minLines: 1,
+              minLines: 4,
               maxLines: 50,
-              decoration: const InputDecoration(
-                labelText: "Content",
-              ),
+              decoration: const InputDecoration(labelText: "Content"),
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return "Please enter a content";
@@ -63,6 +59,13 @@ class _CreateNotePageState extends State<CreateNotePage> {
             ),
             const SizedBox(height: 16.0),
             FilledButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4.0),
+                  ),
+                ),
+              ),
               onPressed: () {
                 if (_formKey.currentState?.validate() ?? false) {
                   _formKey.currentState?.save();

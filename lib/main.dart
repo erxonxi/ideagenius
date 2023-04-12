@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
                 theme == ThemeMode.dark ? ThemeMode.dark : ThemeMode.light,
             debugShowCheckedModeBanner: false,
             routes: {
-              "/create-note": (context) => const CreateNotePage(),
+              "/create-note": (context) => const CreateNoteScreen(),
             },
           );
         },

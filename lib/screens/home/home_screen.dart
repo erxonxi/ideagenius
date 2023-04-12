@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../screens/config_screen.dart';
 import '../../blocs/theme/theme_bloc.dart';
 import '../../components/speed_dial.dart';
 import '../../utils/notes_storage.dart';
@@ -37,6 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
           appBar: AppBar(
             title: const Text("IdeaGenius"),
             actions: [
+              IconButton(
+                  onPressed: _visitConfigPage,
+                  icon: const Icon(Icons.settings_rounded)),
               Switch(
                 value: state == ThemeMode.dark,
                 onChanged: (value) {
@@ -78,6 +82,15 @@ class _HomeScreenState extends State<HomeScreen> {
       context,
       MaterialPageRoute(
         builder: (context) => NoteViewPage(note: note),
+      ),
+    );
+  }
+
+  void _visitConfigPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ConfigScreen(),
       ),
     );
   }

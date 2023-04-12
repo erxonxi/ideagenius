@@ -13,6 +13,9 @@ class HomeBottomNavigator extends StatelessWidget {
     return BlocBuilder<TabsBloc, int>(
       builder: (context, currentIndex) {
         return BottomNavigationBar(
+          selectedIconTheme: const IconThemeData(
+              // animation
+              ),
           currentIndex: currentIndex,
           onTap: (value) =>
               context.read<TabsBloc>().add(TabsChangeEvent(index: value)),
@@ -26,8 +29,8 @@ class HomeBottomNavigator extends StatelessWidget {
               label: "Todo",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings_rounded),
-              label: "Settings",
+              icon: Icon(Icons.text_snippet_rounded),
+              label: "Summary",
             ),
           ],
         );

@@ -13,6 +13,8 @@ ThemeData lightTheme = ThemeData(
     iconTheme: IconThemeData(color: Colors.black),
   ),
   textTheme: const TextTheme(),
+  inputDecorationTheme:
+      const InputDecorationTheme(border: OutlineInputBorder()),
 );
 
 ThemeData darkTheme = ThemeData(
@@ -28,4 +30,6 @@ ThemeData darkTheme = ThemeData(
     iconTheme: IconThemeData(color: Colors.white),
   ),
   textTheme: const TextTheme(),
+  inputDecorationTheme:
+      const InputDecorationTheme(border: OutlineInputBorder()),
 );

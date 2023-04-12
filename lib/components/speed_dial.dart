@@ -132,9 +132,7 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
                   controller: _thinkController,
                   minLines: 4,
                   maxLines: 64,
-                  decoration: const InputDecoration(
-                    labelText: "Content",
-                  ),
+                  decoration: const InputDecoration(labelText: "Content"),
                 ),
               ],
             ),
