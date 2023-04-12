@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_quill/flutter_quill.dart' as quill;
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:ideagenis/blocs/notes/notes_bloc.dart';
 
