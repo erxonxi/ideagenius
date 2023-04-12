@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_quill/flutter_quill.dart' as quill;
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:ideagenis/blocs/notes/notes_bloc.dart';
 
@@ -111,9 +114,10 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
     final think = _thinkController.text;
     _thinkController.clear();
     final res = await createSummary(apiKey, think);
+    String resJsonStr = formatPlainText(res);
     final note = Note(
       title: "Summarize",
-      content: '{"insert":"$res\n"}',
+      content: resJsonStr,
       color: randomNoteColor().value.toString(),
       date: DateTime.now().toString(),
       time: DateTime.now().toString(),
@@ -159,9 +163,10 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
     final content = _thinkController.text;
     _thinkController.clear();
     final res = await createQuestions(apiKey, content);
+    String resJsonStr = formatPlainText(res);
     final note = Note(
       title: "Questions",
-      content: '{"insert":"$res\n"}',
+      content: resJsonStr,
       color: randomNoteColor().value.toString(),
       date: DateTime.now().toString(),
       time: DateTime.now().toString(),
@@ -206,16 +211,33 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
     final apiKey = (await ConfigStorage.getConfig()).openAiKey;
     final think = _thinkController.text;
     _thinkController.clear();
-    final todoes = await createTodoesOfThink(apiKey, think);
+    final res = await createTodoesOfThink(apiKey, think);
+    String resJsonStr = formatPlainText(res);
     final note = Note(
       title: think,
-      content: '{"insert":"$todoes\n"}',
+      content: resJsonStr,
       color: randomNoteColor().value.toString(),
       date: DateTime.now().toString(),
       time: DateTime.now().toString(),
     );
     await NotesStorage.addNote(note);
     _onTaskCreated();
+  }
+
+  String formatPlainText(String todoes) {
+    String todoesJsonStr = "[";
+    todoes.split("\n").forEach((element) {
+      final fixed = element.trim().replaceAll('"', "'");
+
+      todoesJsonStr += '{"insert":"$fixed\\n"}';
+
+      if (element != todoes.split("\n").last) {
+        todoesJsonStr += ",";
+      }
+    });
+
+    todoesJsonStr += "]";
+    return todoesJsonStr;
   }
 
   Future<void> _showCustomPrompt() async {
@@ -257,9 +279,10 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
     final think = _thinkController.text;
     _thinkController.clear();
     final res = await promptCompletion(apiKey, think);
+    String resJsonStr = formatPlainText(res);
     final note = Note(
       title: "Custom Prompt",
-      content: '{"insert":"$res\n"}',
+      content: resJsonStr,
       color: randomNoteColor().value.toString(),
       date: DateTime.now().toString(),
       time: DateTime.now().toString(),
