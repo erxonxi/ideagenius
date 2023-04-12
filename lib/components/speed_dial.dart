@@ -113,7 +113,7 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
     final res = await createSummary(apiKey, think);
     final note = Note(
       title: "Summarize",
-      content: res,
+      content: '{"insert":"$res\n"}',
       color: randomNoteColor().value.toString(),
       date: DateTime.now().toString(),
       time: DateTime.now().toString(),
@@ -161,7 +161,7 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
     final res = await createQuestions(apiKey, content);
     final note = Note(
       title: "Questions",
-      content: res,
+      content: '{"insert":"$res\n"}',
       color: randomNoteColor().value.toString(),
       date: DateTime.now().toString(),
       time: DateTime.now().toString(),
@@ -209,7 +209,7 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
     final todoes = await createTodoesOfThink(apiKey, think);
     final note = Note(
       title: think,
-      content: todoes,
+      content: '{"insert":"$todoes\n"}',
       color: randomNoteColor().value.toString(),
       date: DateTime.now().toString(),
       time: DateTime.now().toString(),
@@ -259,7 +259,7 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
     final res = await promptCompletion(apiKey, think);
     final note = Note(
       title: "Custom Prompt",
-      content: res,
+      content: '{"insert":"$res\n"}',
       color: randomNoteColor().value.toString(),
       date: DateTime.now().toString(),
       time: DateTime.now().toString(),

@@ -17,6 +17,14 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
         await NotesStorage.addNote(event.note);
 
         emit(NotesLoaded(await NotesStorage.getNotes()));
+      } else if (event is NotesUpdate) {
+        await NotesStorage.updateNote(event.note);
+
+        emit(NotesLoaded(await NotesStorage.getNotes()));
+      } else if (event is NotesDelete) {
+        await NotesStorage.deleteNote(event.note);
+
+        emit(NotesLoaded(await NotesStorage.getNotes()));
       }
     });
   }

@@ -68,10 +68,13 @@ class NotesStorage {
     await file.writeAsString(json.encode(notesAsMaps));
   }
 
-  static Future<void> updateNote(Note oldNote, Note newNote) async {
+  static Future<void> updateNote(Note newNote) async {
     final file = await _localFile;
     final notes = await getNotes();
-    notes.remove(oldNote);
+    notes.removeWhere((n) =>
+        n.title == newNote.title &&
+        n.date == newNote.date &&
+        n.time == newNote.time);
     notes.add(newNote);
     final notesAsMaps = notes.map((note) => note.toMap()).toList();
     await file.writeAsString(json.encode(notesAsMaps));
