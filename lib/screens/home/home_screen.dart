@@ -5,7 +5,7 @@ import '../../screens/config_screen.dart';
 import '../../blocs/theme/theme_bloc.dart';
 import '../../components/speed_dial.dart';
 import '../../utils/notes_storage.dart';
-import '../note_view.dart';
+import '../note_screen.dart';
 import 'components/home_bottom_navigator.dart';
 import 'components/home_tabs_view.dart';
 
@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => NoteViewPage(note: note),
+        builder: (context) => NoteScreen(note: note),
       ),
     );
   }

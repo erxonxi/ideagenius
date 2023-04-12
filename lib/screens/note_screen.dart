@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 import '../utils/notes_storage.dart';
 
-class NoteViewPage extends StatefulWidget {
+class NoteScreen extends StatefulWidget {
   final Note note;
 
-  const NoteViewPage({Key? key, required this.note}) : super(key: key);
+  const NoteScreen({Key? key, required this.note}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _NoteViewPageState createState() => _NoteViewPageState();
+  _NoteScreenState createState() => _NoteScreenState();
 }
 
-class _NoteViewPageState extends State<NoteViewPage> {
+class _NoteScreenState extends State<NoteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
