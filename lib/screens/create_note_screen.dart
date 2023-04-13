@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:ideagenis/blocs/notes/notes_bloc.dart';
 
+import '../models/note.dart';
 import '../utils/note_colors.dart';
-import '../utils/notes_storage.dart';
 
 class CreateNoteScreen extends StatefulWidget {
   const CreateNoteScreen({Key? key}) : super(key: key);

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../models/note.dart';
 import '../../utils/notes_storage.dart';
 
 part 'notes_event.dart';

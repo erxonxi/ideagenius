@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:ideagenis/blocs/notes/notes_bloc.dart';
 
+import '../models/note.dart';
 import '../utils/config_storage.dart';
 import '../utils/note_colors.dart';
 import '../utils/notes_storage.dart';
@@ -62,15 +63,12 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
     );
   }
 
-  Future<void> _visitCreateNotePage() async {
-    final note = await Navigator.pushNamed(context, "/create-note") as Note?;
-    if (note != null) {
-      await NotesStorage.addNote(note);
-      _onTaskCreated();
-    }
+  void _visitCreateNotePage() {
+    Navigator.pushNamed(context, "/create-note").then(
+        (note) => {context.read<NotesBloc>().add(NotesAdd(note as Note))});
   }
 
-  Future<void> _showSumarizeDialog() async {
+  Future<void> _showSumarizeDialog() {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {

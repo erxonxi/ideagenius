@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
-import 'package:ideagenis/blocs/notes/notes_bloc.dart';
 
-import '../utils/notes_storage.dart';
+import '../blocs/notes/notes_bloc.dart';
+import '../models/note.dart';
 
 class NoteScreen extends StatefulWidget {
   final Note note;

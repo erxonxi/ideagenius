@@ -4,7 +4,7 @@ import 'package:ideagenis/blocs/notes/notes_bloc.dart';
 import 'package:ideagenis/screens/note_screen.dart';
 
 import '../../../components/note_card.dart';
-import '../../../utils/notes_storage.dart';
+import '../../../models/note.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
