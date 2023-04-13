@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:ideagenis/blocs/notes/notes_bloc.dart';
 
+import '../blocs/notes/notes_bloc.dart';
 import '../models/note.dart';
 import '../utils/config_storage.dart';
 import '../utils/note_colors.dart';
@@ -70,8 +70,7 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
   }
 
   Future<void> _showCustomDialog(
-      String title, String label, Function() callback
-  ) {
+      String title, String label, Function() callback) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -183,7 +182,8 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
   }
 
   Future<void> _showCustomPrompt() async {
-    return _showCustomDialog("Custom Prompt", "Prompt", _createNoteCustomPrompt);
+    return _showCustomDialog(
+        "Custom Prompt", "Prompt", _createNoteCustomPrompt);
   }
 
   Future<void> _createNoteCustomPrompt() async {
