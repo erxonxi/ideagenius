@@ -21,7 +21,7 @@ jobs:
         with:
           channel: 'stable'
 
-      - run: sudo apt-get install -y libjsoncpp1 libjsoncpp-dev
+      - run: sudo apt-get install -y libsecret-1-dev libjsoncpp-dev
 
       - run: flutter pub get
 
