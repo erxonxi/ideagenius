@@ -10,9 +10,12 @@ ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
   appBarTheme: const AppBarTheme(
     color: Colors.red,
-    iconTheme: IconThemeData(color: Colors.black),
+    iconTheme: IconThemeData(color: Colors.white),
   ),
   textTheme: const TextTheme(),
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    foregroundColor: Colors.white,
+  ),
   inputDecorationTheme:
       const InputDecorationTheme(border: OutlineInputBorder()),
 );
@@ -28,6 +31,9 @@ ThemeData darkTheme = ThemeData(
   appBarTheme: const AppBarTheme(
     color: Colors.black,
     iconTheme: IconThemeData(color: Colors.white),
+  ),
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    foregroundColor: Colors.white,
   ),
   textTheme: const TextTheme(),
   inputDecorationTheme:

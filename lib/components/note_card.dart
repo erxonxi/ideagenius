@@ -45,11 +45,12 @@ class NoteCard extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                     IconButton(
                       onPressed: onDelete,
-                      icon: const Icon(Icons.delete),
+                      icon: const Icon(Icons.delete, color: Colors.white),
                     ),
                   ],
                 ),
