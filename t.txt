@@ -1,0 +1,244 @@
+[  +13 ms] executing: uname -m
+[   +8 ms] Exit code 0 from: uname -m
+[        ] x86_64
+[        ] executing: [/home/ruben/snap/flutter/common/flutter/] git -c log.showSignature=false log -n 1 --pretty=format:%H
+[   +2 ms] Exit code 0 from: git -c log.showSignature=false log -n 1 --pretty=format:%H
+[        ] 4b12645012342076800eb701bcdfe18f87da21cf
+[        ] executing: [/home/ruben/snap/flutter/common/flutter/] git tag --points-at 4b12645012342076800eb701bcdfe18f87da21cf
+[  +10 ms] Exit code 0 from: git tag --points-at 4b12645012342076800eb701bcdfe18f87da21cf
+[        ] 3.7.10
+[   +6 ms] executing: [/home/ruben/snap/flutter/common/flutter/] git rev-parse --abbrev-ref --symbolic @{upstream}
+[   +3 ms] Exit code 0 from: git rev-parse --abbrev-ref --symbolic @{upstream}
+[        ] origin/stable
+[        ] executing: [/home/ruben/snap/flutter/common/flutter/] git ls-remote --get-url origin
+[   +2 ms] Exit code 0 from: git ls-remote --get-url origin
+[        ] https://github.com/flutter/flutter.git
+[  +15 ms] executing: [/home/ruben/snap/flutter/common/flutter/] git rev-parse --abbrev-ref HEAD
+[   +3 ms] Exit code 0 from: git rev-parse --abbrev-ref HEAD
+[        ] stable
+[  +10 ms] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[   +1 ms] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[  +42 ms] executing: /home/ruben/Android/Sdk/platform-tools/adb devices -l
+[  +21 ms] List of devices attached
+[   +3 ms] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[  +38 ms] Multiple devices found:
+[  +26 ms] Linux (desktop) • linux  • linux-x64      • Ubuntu 22.04.2 LTS 5.19.0-38-generic
+[        ] Chrome (web)    • chrome • web-javascript • Google Chrome 112.0.5615.49
+[        ] [1]: Linux (linux)
+[        ] [2]: Chrome (chrome)
+[        ] Please choose one (To quit, press "q/Q")
+[        ] : 
+[+2453 ms] 1
+[  +14 ms] Skipping pub get: version match.
+[  +22 ms] Found plugin device_info_plus at /home/ruben/.pub-cache/hosted/pub.dev/device_info_plus-8.2.0/
+[   +8 ms] Found plugin flutter_keyboard_visibility at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility-5.4.0/
+[   +1 ms] Found plugin flutter_keyboard_visibility_linux at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_linux-1.0.0/
+[        ] Found plugin flutter_keyboard_visibility_macos at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_macos-1.0.0/
+[   +1 ms] Found plugin flutter_keyboard_visibility_web at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_web-2.0.0/
+[        ] Found plugin flutter_keyboard_visibility_windows at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_windows-1.0.0/
+[   +2 ms] Found plugin flutter_secure_storage at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage-8.0.0/
+[        ] Found plugin flutter_secure_storage_linux at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage_linux-1.1.3/
+[        ] Found plugin flutter_secure_storage_macos at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage_macos-3.0.0/
+[   +1 ms] Found plugin flutter_secure_storage_web at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage_web-1.1.1/
+[        ] Found plugin flutter_secure_storage_windows at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage_windows-2.0.0/
+[   +1 ms] Found plugin gtk at /home/ruben/.pub-cache/hosted/pub.dev/gtk-2.0.0/
+[   +5 ms] Found plugin pasteboard at /home/ruben/.pub-cache/hosted/pub.dev/pasteboard-0.2.0/
+[   +1 ms] Found plugin path_provider at /home/ruben/.pub-cache/hosted/pub.dev/path_provider-2.0.14/
+[        ] Found plugin path_provider_android at /home/ruben/.pub-cache/hosted/pub.dev/path_provider_android-2.0.24/
+[        ] Found plugin path_provider_foundation at /home/ruben/.pub-cache/hosted/pub.dev/path_provider_foundation-2.2.1/
+[   +2 ms] Found plugin path_provider_linux at /home/ruben/.pub-cache/hosted/pub.dev/path_provider_linux-2.1.10/
+[   +1 ms] Found plugin path_provider_windows at /home/ruben/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.5/
+[   +8 ms] Found plugin url_launcher at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher-6.1.10/
+[   +1 ms] Found plugin url_launcher_android at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_android-6.0.26/
+[   +1 ms] Found plugin url_launcher_ios at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_ios-6.1.4/
+[        ] Found plugin url_launcher_linux at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_linux-3.0.4/
+[        ] Found plugin url_launcher_macos at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_macos-3.0.5/
+[   +1 ms] Found plugin url_launcher_web at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_web-2.0.16/
+[        ] Found plugin url_launcher_windows at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_windows-3.0.5/
+[  +28 ms] Found plugin device_info_plus at /home/ruben/.pub-cache/hosted/pub.dev/device_info_plus-8.2.0/
+[   +3 ms] Found plugin flutter_keyboard_visibility at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility-5.4.0/
+[        ] Found plugin flutter_keyboard_visibility_linux at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_linux-1.0.0/
+[        ] Found plugin flutter_keyboard_visibility_macos at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_macos-1.0.0/
+[        ] Found plugin flutter_keyboard_visibility_web at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_web-2.0.0/
+[        ] Found plugin flutter_keyboard_visibility_windows at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_windows-1.0.0/
+[   +1 ms] Found plugin flutter_secure_storage at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage-8.0.0/
+[        ] Found plugin flutter_secure_storage_linux at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage_linux-1.1.3/
+[        ] Found plugin flutter_secure_storage_macos at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage_macos-3.0.0/
+[        ] Found plugin flutter_secure_storage_web at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage_web-1.1.1/
+[        ] Found plugin flutter_secure_storage_windows at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage_windows-2.0.0/
+[   +1 ms] Found plugin gtk at /home/ruben/.pub-cache/hosted/pub.dev/gtk-2.0.0/
+[   +4 ms] Found plugin pasteboard at /home/ruben/.pub-cache/hosted/pub.dev/pasteboard-0.2.0/
+[        ] Found plugin path_provider at /home/ruben/.pub-cache/hosted/pub.dev/path_provider-2.0.14/
+[        ] Found plugin path_provider_android at /home/ruben/.pub-cache/hosted/pub.dev/path_provider_android-2.0.24/
+[        ] Found plugin path_provider_foundation at /home/ruben/.pub-cache/hosted/pub.dev/path_provider_foundation-2.2.1/
+[        ] Found plugin path_provider_linux at /home/ruben/.pub-cache/hosted/pub.dev/path_provider_linux-2.1.10/
+[        ] Found plugin path_provider_windows at /home/ruben/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.5/
+[   +4 ms] Found plugin url_launcher at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher-6.1.10/
+[        ] Found plugin url_launcher_android at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_android-6.0.26/
+[        ] Found plugin url_launcher_ios at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_ios-6.1.4/
+[        ] Found plugin url_launcher_linux at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_linux-3.0.4/
+[        ] Found plugin url_launcher_macos at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_macos-3.0.5/
+[        ] Found plugin url_launcher_web at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_web-2.0.16/
+[        ] Found plugin url_launcher_windows at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_windows-3.0.5/
+[  +17 ms] Found plugin device_info_plus at /home/ruben/.pub-cache/hosted/pub.dev/device_info_plus-8.2.0/
+[   +1 ms] Found plugin flutter_keyboard_visibility at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility-5.4.0/
+[        ] Found plugin flutter_keyboard_visibility_linux at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_linux-1.0.0/
+[        ] Found plugin flutter_keyboard_visibility_macos at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_macos-1.0.0/
+[        ] Found plugin flutter_keyboard_visibility_web at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_web-2.0.0/
+[        ] Found plugin flutter_keyboard_visibility_windows at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_windows-1.0.0/
+[   +1 ms] Found plugin flutter_secure_storage at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage-8.0.0/
+[        ] Found plugin flutter_secure_storage_linux at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage_linux-1.1.3/
+[        ] Found plugin flutter_secure_storage_macos at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage_macos-3.0.0/
+[        ] Found plugin flutter_secure_storage_web at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage_web-1.1.1/
+[        ] Found plugin flutter_secure_storage_windows at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage_windows-2.0.0/
+[        ] Found plugin gtk at /home/ruben/.pub-cache/hosted/pub.dev/gtk-2.0.0/
+[   +2 ms] Found plugin pasteboard at /home/ruben/.pub-cache/hosted/pub.dev/pasteboard-0.2.0/
+[        ] Found plugin path_provider at /home/ruben/.pub-cache/hosted/pub.dev/path_provider-2.0.14/
+[        ] Found plugin path_provider_android at /home/ruben/.pub-cache/hosted/pub.dev/path_provider_android-2.0.24/
+[        ] Found plugin path_provider_foundation at /home/ruben/.pub-cache/hosted/pub.dev/path_provider_foundation-2.2.1/
+[        ] Found plugin path_provider_linux at /home/ruben/.pub-cache/hosted/pub.dev/path_provider_linux-2.1.10/
+[        ] Found plugin path_provider_windows at /home/ruben/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.5/
+[   +2 ms] Found plugin url_launcher at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher-6.1.10/
+[        ] Found plugin url_launcher_android at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_android-6.0.26/
+[        ] Found plugin url_launcher_ios at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_ios-6.1.4/
+[        ] Found plugin url_launcher_linux at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_linux-3.0.4/
+[        ] Found plugin url_launcher_macos at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_macos-3.0.5/
+[        ] Found plugin url_launcher_web at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_web-2.0.16/
+[        ] Found plugin url_launcher_windows at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_windows-3.0.5/
+[  +36 ms] Generating /home/ruben/Repos/ideagenis/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+[  +55 ms] Initializing file store
+[   +4 ms] Skipping target: gen_localizations
+[   +2 ms] gen_dart_plugin_registrant: Starting due to {InvalidatedReasonKind.inputChanged: The following inputs have updated contents: /home/ruben/Repos/ideagenis/.dart_tool/package_config_subset,/home/ruben/Repos/ideagenis/.dart_tool/flutter_build/dart_plugin_registrant.dart}
+[   +6 ms] Found plugin device_info_plus at /home/ruben/.pub-cache/hosted/pub.dev/device_info_plus-8.2.0/
+[   +2 ms] Found plugin flutter_keyboard_visibility at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility-5.4.0/
+[   +1 ms] Found plugin flutter_keyboard_visibility_linux at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_linux-1.0.0/
+[        ] Found plugin flutter_keyboard_visibility_macos at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_macos-1.0.0/
+[        ] Found plugin flutter_keyboard_visibility_web at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_web-2.0.0/
+[        ] Found plugin flutter_keyboard_visibility_windows at /home/ruben/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_windows-1.0.0/
+[        ] Found plugin flutter_secure_storage at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage-8.0.0/
+[        ] Found plugin flutter_secure_storage_linux at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage_linux-1.1.3/
+[        ] Found plugin flutter_secure_storage_macos at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage_macos-3.0.0/
+[        ] Found plugin flutter_secure_storage_web at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage_web-1.1.1/
+[        ] Found plugin flutter_secure_storage_windows at /home/ruben/.pub-cache/hosted/pub.dev/flutter_secure_storage_windows-2.0.0/
+[        ] Found plugin gtk at /home/ruben/.pub-cache/hosted/pub.dev/gtk-2.0.0/
+[   +1 ms] Found plugin pasteboard at /home/ruben/.pub-cache/hosted/pub.dev/pasteboard-0.2.0/
+[        ] Found plugin path_provider at /home/ruben/.pub-cache/hosted/pub.dev/path_provider-2.0.14/
+[        ] Found plugin path_provider_android at /home/ruben/.pub-cache/hosted/pub.dev/path_provider_android-2.0.24/
+[        ] Found plugin path_provider_foundation at /home/ruben/.pub-cache/hosted/pub.dev/path_provider_foundation-2.2.1/
+[        ] Found plugin path_provider_linux at /home/ruben/.pub-cache/hosted/pub.dev/path_provider_linux-2.1.10/
+[        ] Found plugin path_provider_windows at /home/ruben/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.5/
+[   +1 ms] Found plugin url_launcher at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher-6.1.10/
+[        ] Found plugin url_launcher_android at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_android-6.0.26/
+[        ] Found plugin url_launcher_ios at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_ios-6.1.4/
+[        ] Found plugin url_launcher_linux at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_linux-3.0.4/
+[        ] Found plugin url_launcher_macos at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_macos-3.0.5/
+[        ] Found plugin url_launcher_web at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_web-2.0.16/
+[        ] Found plugin url_launcher_windows at /home/ruben/.pub-cache/hosted/pub.dev/url_launcher_windows-3.0.5/
+[   +4 ms] gen_dart_plugin_registrant: Complete
+[        ] Skipping target: _composite
+[   +1 ms] complete
+[   +2 ms] Launching lib/main.dart on Linux in debug mode...
+[   +2 ms] /home/ruben/snap/flutter/common/flutter/bin/cache/dart-sdk/bin/dart --disable-dart-dev /home/ruben/snap/flutter/common/flutter/bin/cache/dart-sdk/bin/snapshots/frontend_server.dart.snapshot --sdk-root /home/ruben/snap/flutter/common/flutter/bin/cache/artifacts/engine/common/flutter_patched_sdk/ --incremental --target=flutter --experimental-emit-debug-metadata -DFLUTTER_WEB_AUTO_DETECT=true --output-dill /tmp/flutter_tools.RTARAD/flutter_tool.CWDESB/app.dill --packages /home/ruben/Repos/ideagenis/.dart_tool/package_config.json -Ddart.vm.profile=false -Ddart.vm.product=false --enable-asserts --track-widget-creation --filesystem-scheme org-dartlang-root --initialize-from-dill build/c075001b96339384a97db4862b8ab8db.cache.dill.track.dill --source file:///home/ruben/Repos/ideagenis/.dart_tool/flutter_build/dart_plugin_registrant.dart --source package:flutter/src/dart_plugin_registrant.dart -Dflutter.dart_plugin_registrant=file:///home/ruben/Repos/ideagenis/.dart_tool/flutter_build/dart_plugin_registrant.dart --verbosity=error --enable-experiment=alternative-invalidation-strategy
+[   +8 ms] Building Linux application...
+[   +8 ms] <- compile package:ideagenis/main.dart
+[   +1 ms] executing: [build/linux/x64/debug/] cmake -G Ninja -DCMAKE_BUILD_TYPE=Debug -DFLUTTER_TARGET_PLATFORM=linux-x64 /home/ruben/Repos/ideagenis/linux
+[  +27 ms] -- Configuring done
+[  +14 ms] -- Generating done
+[        ] -- Build files have been written to: /home/ruben/Repos/ideagenis/build/linux/x64/debug
+[   +3 ms] executing: ninja -C build/linux/x64/debug install
+[   +4 ms] ninja: Entering directory `build/linux/x64/debug'
+[+1664 ms] [1/13] Generating /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/libflutter_linux_gtk.so, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_engine.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_method_call.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_method_response.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_value.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/fl_view.h, /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/flutter_linux/flutter_linux.h, _phony_
+[        ] [  +11 ms] executing: uname -m
+[        ] [   +7 ms] Exit code 0 from: uname -m
+[        ] [        ] x86_64
+[        ] [        ] executing: [/home/ruben/snap/flutter/common/flutter/] git -c log.showSignature=false log -n 1 --pretty=format:%H
+[        ] [   +2 ms] Exit code 0 from: git -c log.showSignature=false log -n 1 --pretty=format:%H
+[        ] [        ] 4b12645012342076800eb701bcdfe18f87da21cf
+[        ] [        ] executing: [/home/ruben/snap/flutter/common/flutter/] git tag --points-at 4b12645012342076800eb701bcdfe18f87da21cf
+[        ] [  +10 ms] Exit code 0 from: git tag --points-at 4b12645012342076800eb701bcdfe18f87da21cf
+[        ] [        ] 3.7.10
+[        ] [   +8 ms] executing: [/home/ruben/snap/flutter/common/flutter/] git rev-parse --abbrev-ref HEAD
+[        ] [   +2 ms] Exit code 0 from: git rev-parse --abbrev-ref HEAD
+[        ] [        ] stable
+[        ] [  +10 ms] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] [  +54 ms] executing: [/home/ruben/snap/flutter/common/flutter/] git rev-parse --abbrev-ref --symbolic @{upstream}
+[        ] [   +2 ms] Exit code 0 from: git rev-parse --abbrev-ref --symbolic @{upstream}
+[        ] [        ] origin/stable
+[        ] [        ] executing: [/home/ruben/snap/flutter/common/flutter/] git ls-remote --get-url origin
+[        ] [   +1 ms] Exit code 0 from: git ls-remote --get-url origin
+[        ] [        ] https://github.com/flutter/flutter.git
+[        ] [        ] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+[        ] [  +23 ms] Initializing file store
+[        ] [   +8 ms] Done initializing file store
+[        ] [  +27 ms] Skipping target: gen_localizations
+[        ] [   +9 ms] Skipping target: gen_dart_plugin_registrant
+[        ] [ +438 ms] Skipping target: unpack_linux
+[        ] [ +355 ms] Skipping target: kernel_snapshot
+[        ] [ +259 ms] Skipping target: debug_bundle_linux-x64_assets
+[        ] [        ] Persisting file store
+[        ] [   +6 ms] Done persisting file store
+[        ] [   +4 ms] build succeeded.
+[        ] [   +4 ms] "flutter assemble" took 1.209ms.
+[        ] [ +159 ms] ensureAnalyticsSent: 157ms
+[        ] [        ] Running 0 shutdown hooks
+[        ] [        ] Shutdown hooks complete
+[        ] [        ] exiting with code 0
+[ +308 ms] [2/5] Building CXX object CMakeFiles/ideagenis.dir/flutter/generated_plugin_registrant.cc.o
+[  +25 ms] [3/5] Building CXX object CMakeFiles/ideagenis.dir/my_application.cc.o
+[ +122 ms] [4/5] Linking CXX executable intermediates_do_not_run/ideagenis
+[        ] FAILED: intermediates_do_not_run/ideagenis 
+[   +6 ms] : && /snap/flutter/current/usr/bin/clang++  -g  -B/snap/flutter/current/usr/lib/gcc/x86_64-linux-gnu/9 -B/snap/flutter/current/usr/lib/x86_64-linux-gnu -B/snap/flutter/current/lib/x86_64-linux-gnu -B/snap/flutter/current/usr/lib/ -L/snap/flutter/current/usr/lib/gcc/x86_64-linux-gnu/9 -L/snap/flutter/current/usr/lib/x86_64-linux-gnu -L/snap/flutter/current/lib/x86_64-linux-gnu -L/snap/flutter/current/usr/lib/ -lblkid -lgcrypt -llzma -llz4 -lgpg-error -luuid -lpthread -ldl -lepoxy -B/snap/flutter/current/usr/lib/gcc/x86_64-linux-gnu/9 -B/snap/flutter/current/usr/lib/x86_64-linux-gnu -B/snap/flutter/current/lib/x86_64-linux-gnu -B/snap/flutter/current/usr/lib/ -L/snap/flutter/current/usr/lib/gcc/x86_64-linux-gnu/9 -L/snap/flutter/current/usr/lib/x86_64-linux-gnu -L/snap/flutter/current/lib/x86_64-linux-gnu -L/snap/flutter/current/usr/lib/ -lblkid -lgcrypt -llzma -llz4 -lgpg-error -luuid -lpthread -ldl -lepoxy CMakeFiles/ideagenis.dir/main.cc.o CMakeFiles/ideagenis.dir/my_application.cc.o CMakeFiles/ideagenis.dir/flutter/generated_plugin_registrant.cc.o  -o intermediates_do_not_run/ideagenis  -Wl,-rpath,/home/ruben/Repos/ideagenis/build/linux/x64/debug/plugins/flutter_secure_storage_linux:/home/ruben/Repos/ideagenis/build/linux/x64/debug/plugins/gtk:/home/ruben/Repos/ideagenis/build/linux/x64/debug/plugins/pasteboard:/home/ruben/Repos/ideagenis/build/linux/x64/debug/plugins/url_launcher_linux:/home/ruben/Repos/ideagenis/linux/flutter/ephemeral:  plugins/flutter_secure_storage_linux/libflutter_secure_storage_linux_plugin.so  plugins/gtk/libgtk_plugin.so  plugins/pasteboard/libpasteboard_plugin.so  plugins/url_launcher_linux/liburl_launcher_linux_plugin.so  /home/ruben/Repos/ideagenis/linux/flutter/ephemeral/libflutter_linux_gtk.so  /snap/flutter/current/usr/lib/x86_64-linux-gnu/libgtk-3.so  /snap/flutter/current/usr/lib/x86_64-linux-gnu/libgdk-3.so  /snap/flutter/current/usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so  /snap/flutter/current/usr/lib/x86_64-linux-gnu/libpango-1.0.so  /snap/flutter/current/usr/lib/x86_64-linux-gnu/libharfbuzz.so  /snap/flutter/current/usr/lib/x86_64-linux-gnu/libatk-1.0.so  /snap/flutter/current/usr/lib/x86_64-linux-gnu/libcairo-gobject.so  /snap/flutter/current/usr/lib/x86_64-linux-gnu/libcairo.so  /snap/flutter/current/usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so  /snap/flutter/current/usr/lib/x86_64-linux-gnu/libgio-2.0.so  /snap/flutter/current/usr/lib/x86_64-linux-gnu/libgobject-2.0.so  /snap/flutter/current/usr/lib/x86_64-linux-gnu/libglib-2.0.so && :
+[        ] /snap/flutter/current/usr/bin/ld: /lib/x86_64-linux-gnu/libjsoncpp.so.25: referencia a `std::__throw_bad_array_new_length()@GLIBCXX_3.4.29' sin definir
+[        ] ninja: build stopped: subcommand failed.
+[   +5 ms] Building Linux application... (completed in 2.194ms)
+[        ] "flutter run" took 5.117ms.
+[  +43 ms] ensureAnalyticsSent: 43ms
+[        ] Running 1 shutdown hook
+[   +9 ms] Shutdown hooks complete
+[        ] exiting with code 1

@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - develop
 
 jobs:
   build:
@@ -19,6 +20,8 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
+
+      - run: sudo apt-get install -y libjsoncpp1 libjsoncpp-dev
 
       - run: flutter pub get
 

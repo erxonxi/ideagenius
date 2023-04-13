@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ideagenis/blocs/notes/notes_bloc.dart';
+import 'package:ideagenis/screens/login_screen.dart';
 
 import 'blocs/tabs/tabs_bloc.dart';
 import 'blocs/theme/theme_bloc.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         builder: (context, theme) {
           return MaterialApp(
             title: 'IdeaGenius',
-            home: const HomeScreen(),
+            home: const LoginScreen(),
             theme: lightTheme,
             darkTheme: darkTheme,
             themeMode:

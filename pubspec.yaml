@@ -22,6 +22,7 @@ dependencies:
   equatable: ^2.0.5
   bloc: ^8.1.1
   flutter_quill: ^7.1.4
+  flutter_secure_storage: ^8.0.0
 
 dev_dependencies:
   flutter_test:
