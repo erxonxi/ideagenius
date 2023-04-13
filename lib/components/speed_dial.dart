@@ -17,7 +17,8 @@ class SpeedDialAddTask extends StatefulWidget {
 }
 
 class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
-  final TextEditingController _thinkController = TextEditingController();
+  final TextEditingController _contentController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
               child: const Icon(Icons.read_more_rounded),
               label: 'Summarize',
               backgroundColor: Colors.grey,
-              onTap: _showSumarizeDialog,
+              onTap: _showSummarizeDialog,
             ),
             SpeedDialChild(
               child: const Icon(Icons.question_mark_rounded),
@@ -68,21 +69,31 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
         (note) => {context.read<NotesBloc>().add(NotesAdd(note as Note))});
   }
 
-  Future<void> _showSumarizeDialog() {
+  Future<void> _showCustomDialog(
+      String title, String label, Function() callback
+  ) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Summarize'),
+          insetPadding: const EdgeInsets.all(8),
+          title: Text(title),
           content: SingleChildScrollView(
             child: ListBody(
               children: [
                 TextField(
-                  controller: _thinkController,
+                  controller: _titleController,
+                  decoration: const InputDecoration(
+                    labelText: "Title",
+                  ),
+                ),
+                const SizedBox(height: 16),
+                TextField(
+                  controller: _contentController,
                   minLines: 4,
                   maxLines: 64,
-                  decoration: const InputDecoration(
-                    labelText: "Content",
+                  decoration: InputDecoration(
+                    labelText: label,
                   ),
                 ),
               ],
@@ -92,7 +103,7 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                _createSumarize();
+                callback();
               },
               child: const Text('Create'),
             ),
@@ -102,14 +113,20 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
     );
   }
 
-  Future<void> _createSumarize() async {
+  Future<void> _showSummarizeDialog() {
+    return _showCustomDialog("Summarize", "Content", _createSummarize);
+  }
+
+  Future<void> _createSummarize() async {
     final apiKey = (await ConfigStorage.getConfig()).openAiKey;
-    final think = _thinkController.text;
-    _thinkController.clear();
+    final title = _titleController.text;
+    final think = _contentController.text;
+    _titleController.clear();
+    _contentController.clear();
     final res = await createSummary(apiKey, think);
-    String resJsonStr = formatPlainText(res);
+    String resJsonStr = _formatPlainText(res);
     final note = Note(
-      title: "Summarize",
+      title: title,
       content: resJsonStr,
       color: randomNoteColor().value.toString(),
       date: DateTime.now().toString(),
@@ -120,45 +137,19 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
   }
 
   Future<void> _showQuestionsDialog() async {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Questions'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: [
-                TextField(
-                  controller: _thinkController,
-                  minLines: 4,
-                  maxLines: 64,
-                  decoration: const InputDecoration(labelText: "Content"),
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                _createQuestions();
-              },
-              child: const Text('Create'),
-            ),
-          ],
-        );
-      },
-    );
+    return _showCustomDialog("Questions", "Content", _createQuestions);
   }
 
   Future<void> _createQuestions() async {
     final apiKey = (await ConfigStorage.getConfig()).openAiKey;
-    final content = _thinkController.text;
-    _thinkController.clear();
+    final title = _titleController.text;
+    final content = _contentController.text;
+    _titleController.clear();
+    _contentController.clear();
     final res = await createQuestions(apiKey, content);
-    String resJsonStr = formatPlainText(res);
+    String resJsonStr = _formatPlainText(res);
     final note = Note(
-      title: "Questions",
+      title: title,
       content: resJsonStr,
       color: randomNoteColor().value.toString(),
       date: DateTime.now().toString(),
@@ -169,45 +160,19 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
   }
 
   Future<void> _showCreateThinkDialog() async {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Create todos from think'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: [
-                TextField(
-                  controller: _thinkController,
-                  decoration: const InputDecoration(
-                    labelText: "Think",
-                  ),
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                _createTodoesOfThink();
-              },
-              child: const Text('Create'),
-            ),
-          ],
-        );
-      },
-    );
+    return _showCustomDialog("Create todos", "Think", _createToDoesOfThink);
   }
 
-  Future<void> _createTodoesOfThink() async {
+  Future<void> _createToDoesOfThink() async {
     final apiKey = (await ConfigStorage.getConfig()).openAiKey;
-    final think = _thinkController.text;
-    _thinkController.clear();
-    final res = await createTodoesOfThink(apiKey, think);
-    String resJsonStr = formatPlainText(res);
+    final title = _titleController.text;
+    final content = _contentController.text;
+    _titleController.clear();
+    _contentController.clear();
+    final res = await createTodoesOfThink(apiKey, content);
+    String resJsonStr = _formatPlainText(res);
     final note = Note(
-      title: think,
+      title: title,
       content: resJsonStr,
       color: randomNoteColor().value.toString(),
       date: DateTime.now().toString(),
@@ -217,7 +182,34 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
     _onTaskCreated();
   }
 
-  String formatPlainText(String todoes) {
+  Future<void> _showCustomPrompt() async {
+    return _showCustomDialog("Custom Prompt", "Prompt", _createNoteCustomPrompt);
+  }
+
+  Future<void> _createNoteCustomPrompt() async {
+    final apiKey = (await ConfigStorage.getConfig()).openAiKey;
+    final title = _titleController.text;
+    final think = _contentController.text;
+    _contentController.clear();
+    _titleController.clear();
+    final res = await promptCompletion(apiKey, think);
+    String resJsonStr = _formatPlainText(res);
+    final note = Note(
+      title: title,
+      content: resJsonStr,
+      color: randomNoteColor().value.toString(),
+      date: DateTime.now().toString(),
+      time: DateTime.now().toString(),
+    );
+    await NotesStorage.addNote(note);
+    _onTaskCreated();
+  }
+
+  void _onTaskCreated() {
+    context.read<NotesBloc>().add(NotesLoad());
+  }
+
+  String _formatPlainText(String todoes) {
     String todoesJsonStr = "[";
     todoes.split("\n").forEach((element) {
       final fixed = element.trim().replaceAll('"', "'");
@@ -231,60 +223,5 @@ class _SpeedDialAddTaskState extends State<SpeedDialAddTask> {
 
     todoesJsonStr += "]";
     return todoesJsonStr;
-  }
-
-  Future<void> _showCustomPrompt() async {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Custom'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: [
-                TextField(
-                  controller: _thinkController,
-                  minLines: 4,
-                  maxLines: 64,
-                  decoration: const InputDecoration(
-                    labelText: "Content",
-                  ),
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                _createNoteCustomPrompt();
-              },
-              child: const Text('Create'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  Future<void> _createNoteCustomPrompt() async {
-    final apiKey = (await ConfigStorage.getConfig()).openAiKey;
-    final think = _thinkController.text;
-    _thinkController.clear();
-    final res = await promptCompletion(apiKey, think);
-    String resJsonStr = formatPlainText(res);
-    final note = Note(
-      title: "Custom Prompt",
-      content: resJsonStr,
-      color: randomNoteColor().value.toString(),
-      date: DateTime.now().toString(),
-      time: DateTime.now().toString(),
-    );
-    await NotesStorage.addNote(note);
-    _onTaskCreated();
-  }
-
-  void _onTaskCreated() {
-    context.read<NotesBloc>().add(NotesLoad());
   }
 }
