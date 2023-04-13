@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ideagenis/blocs/notes/notes_bloc.dart';
-import 'package:ideagenis/screens/note_screen.dart';
 
+import '../../../screens/note_screen.dart';
+import '../../../blocs/notes/notes_bloc.dart';
 import '../../../components/note_card.dart';
 import '../../../models/note.dart';
 
@@ -62,7 +62,6 @@ class _HomeViewState extends State<HomeView> {
                           ? 0.7
                           : 1.5,
                 ),
-                padding: const EdgeInsets.all(8.0),
                 itemCount: state.notes.length,
                 itemBuilder: (context, index) {
                   final note = state.notes[index];
