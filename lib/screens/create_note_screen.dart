@@ -10,7 +10,7 @@ import '../utils/note_colors.dart';
 import '../utils/notes_storage.dart';
 
 class CreateNoteScreen extends StatefulWidget {
-  const CreateNoteScreen({super.key});
+  const CreateNoteScreen({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api

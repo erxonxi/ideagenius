@@ -4,9 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../blocs/tabs/tabs_bloc.dart';
 
 class HomeDrawer extends StatelessWidget {
-  const HomeDrawer({
-    super.key,
-  });
+  const HomeDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

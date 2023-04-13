@@ -7,9 +7,7 @@ import '../views/home_view.dart';
 import '../views/todoes_view.dart';
 
 class HomeTabsView extends StatelessWidget {
-  const HomeTabsView({
-    super.key,
-  });
+  const HomeTabsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

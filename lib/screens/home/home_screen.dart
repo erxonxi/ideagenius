@@ -9,7 +9,7 @@ import 'components/home_drawer.dart';
 import 'components/home_tabs_view.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();

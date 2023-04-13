@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ToDoesView extends StatelessWidget {
-  const ToDoesView({
-    super.key,
-  });
+  const ToDoesView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

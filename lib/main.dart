@@ -14,7 +14,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
 class MyAppStates extends StatefulWidget {
   final Widget child;
 
-  const MyAppStates({super.key, required this.child});
+  const MyAppStates({Key? key, required this.child}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api

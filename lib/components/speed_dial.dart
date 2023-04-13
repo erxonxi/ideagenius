@@ -9,9 +9,7 @@ import '../utils/notes_storage.dart';
 import '../utils/openai_service.dart';
 
 class SpeedDialAddTask extends StatefulWidget {
-  const SpeedDialAddTask({
-    super.key,
-  });
+  const SpeedDialAddTask({Key? key}) : super(key: key);
 
   @override
   State<SpeedDialAddTask> createState() => _SpeedDialAddTaskState();

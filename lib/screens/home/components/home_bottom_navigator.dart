@@ -4,9 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../blocs/tabs/tabs_bloc.dart';
 
 class HomeBottomNavigator extends StatelessWidget {
-  const HomeBottomNavigator({
-    super.key,
-  });
+  const HomeBottomNavigator({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
