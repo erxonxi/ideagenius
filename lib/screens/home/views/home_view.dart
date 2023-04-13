@@ -52,6 +52,7 @@ class _HomeViewState extends State<HomeView> {
               }
 
               noteList = GridView.builder(
+                padding: const EdgeInsets.all(8.0),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: crossAxisCount,
                   crossAxisSpacing: 8,
@@ -77,10 +78,7 @@ class _HomeViewState extends State<HomeView> {
               );
             }
 
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: noteList,
-            );
+            return noteList;
           },
         );
       },
