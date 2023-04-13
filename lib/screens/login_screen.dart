@@ -30,6 +30,16 @@ class _LoginScreenState extends State<LoginScreen> {
           });
         }
 
+        if (state is UserError) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.message),
+              ),
+            );
+          });
+        }
+
         return Scaffold(
           appBar: AppBar(
             title: const Text("Login"),
@@ -46,13 +56,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 16.0),
                 TextField(
+                  obscureText: true,
                   controller: _password,
                   decoration: const InputDecoration(
                     labelText: "Password",
                   ),
                 ),
                 const SizedBox(height: 16.0),
-                OutlinedButton(
+                FilledButton(
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all(
                       const EdgeInsets.symmetric(

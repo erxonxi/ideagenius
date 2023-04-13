@@ -16,3 +16,9 @@ class UserInitial extends UserState {
 class UserLogged extends UserState {
   const UserLogged(User user) : super(user);
 }
+
+class UserError extends UserState {
+  final String message;
+
+  const UserError(this.message) : super(null);
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ideagenis/utils/services/user_service_api.dart';
 
 import 'blocs/notes/notes_bloc.dart';
 import 'blocs/user/user_bloc.dart';
@@ -60,7 +61,7 @@ class _MyAppStatesState extends State<MyAppStates> {
         create: (_) => TabsBloc(),
       ),
       BlocProvider(create: (_) => NotesBloc()),
-      BlocProvider(create: (_) => UserBloc()),
+      BlocProvider(create: (_) => UserBloc(UserServiceApi())),
     ], child: widget.child);
   }
 }

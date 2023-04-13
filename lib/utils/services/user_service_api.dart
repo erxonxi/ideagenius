@@ -17,7 +17,7 @@ class UserServiceApi implements UserService {
         "password": password,
       },
     ).then((value) {
-      if (value.statusCode == 200) {
+      if (value.statusCode == 201) {
         final responseBody = jsonDecode(value.body);
 
         return User.fromJson({
@@ -28,6 +28,8 @@ class UserServiceApi implements UserService {
       } else {
         throw Exception("Error");
       }
+    }).catchError((error) {
+      throw Exception("Invalid credentials");
     });
   }
 
